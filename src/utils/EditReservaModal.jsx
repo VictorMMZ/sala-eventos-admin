@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getReservas } from "../services/api";
 
 export default function EditReservaModal({ reserva, onGuardar, onCerrar }) {
   const [form, setForm] = useState(reserva);
@@ -11,7 +10,7 @@ export default function EditReservaModal({ reserva, onGuardar, onCerrar }) {
   if (!reserva || !form) return null;
 
   const total =
-    (Number(form.precio) || 0) - (Number(form.descuento) || 0) + (Number(form.fianza) || 0);
+    (Number(form.precio) || 0) - (Number(form.descuento) || 0);
 
   const actualizarCampo = (campo, valor) =>
     setForm((prev) => ({ ...prev, [campo]: valor }));

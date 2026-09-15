@@ -1,5 +1,4 @@
-// Si tu relación en el modelo Laravel se llama distinto a "reserva"
-// (por ejemplo "cliente"), cambia esta constante.
+
 const CLAVE_RELACION = "reserva";
 
 const etiquetar = (clave) =>
