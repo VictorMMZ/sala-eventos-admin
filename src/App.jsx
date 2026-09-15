@@ -1,14 +1,21 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-import AdminReservas from './pages/AdminReservas'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import AdminReservas from "./pages/AdminReservas";
+import Finanzas from "./pages/Finanzas";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
   return (
-    <AdminReservas />
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<ProtectedRoute user={true} />}>
+          <Route path="/dashboard" element={<AdminReservas />} />
+          <Route path="/finanzas" element={<Finanzas />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
