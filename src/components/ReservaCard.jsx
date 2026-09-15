@@ -16,15 +16,17 @@ const formatoDia = (dia) => {
 };
 
 export default function ReservaCard({ reserva, onCambiarEstado, onEditar, onEliminar, onVerInfo }) {
-  const { id, dia, hora, precio, descuento, fianza, total, estado } = reserva;
+  const { id,  precio, descuento, fianza, total, estado, reserva: { nombre_completo,fecha_evento, hora_entrada }
+} = reserva;
 
   return (
     <article className="ticket">
       <div className="ticket__cuerpo">
         <div className="ticket__id">
           <span className="ticket__id-numero">#{id}</span>
-          <span className="ticket__fecha">{formatoDia(dia)}</span>
-          <span className="ticket__hora">{hora}</span>
+          <span className="ticket__fecha">{formatoDia(fecha_evento)}</span>
+          <span className="ticket__hora">{hora_entrada}</span>
+          <span className="ticket__nombre">{nombre_completo}</span>
         </div>
 
         <EstadoBadge estado={estado} />
