@@ -1,0 +1,389 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&display=swap");
+
+.admin-reservas {
+  --color-bg: #f2f9ff;
+  --color-superficie: #ffffff;
+  --color-primario: #ff5c8a;
+  --color-primario-oscuro: #e6467a;
+  --color-menta: #2fbfa1;
+  --color-amarillo: #ffb400;
+  --color-texto: #223047;
+  --color-texto-suave: #66748f;
+  --color-borde: #dfeaf7;
+
+  font-family: "Nunito", sans-serif;
+  color: var(--color-texto);
+  background: var(--color-bg);
+  min-height: 100vh;
+  padding: 32px 24px 64px;
+}
+
+.admin-reservas__header h1 {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 2rem;
+  margin: 0 0 4px;
+  color: var(--color-primario-oscuro);
+}
+
+.admin-reservas__header p {
+  margin: 0 0 24px;
+  color: var(--color-texto-suave);
+}
+
+.admin-reservas__filtros {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.filtro {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--color-borde);
+  background: var(--color-superficie);
+  color: var(--color-texto-suave);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.filtro:hover {
+  transform: translateY(-1px);
+}
+
+.filtro--activo {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+  color: #fff;
+}
+
+.admin-reservas__mensaje {
+  color: var(--color-texto-suave);
+  font-style: italic;
+}
+
+.admin-reservas__error {
+  background: #fff0f3;
+  border: 2px dashed var(--color-primario);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-reservas__aviso {
+  background: #dcf7ee;
+  color: #0f7a5d;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.admin-reservas__lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* --- Tarjeta estilo ticket de evento --- */
+.ticket {
+  background: var(--color-superficie);
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(34, 48, 71, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.ticket__cuerpo {
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket__id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ticket__id-numero {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 1.3rem;
+  color: var(--color-texto);
+}
+
+.ticket__fecha {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.ticket__hora {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+.ticket__perforacion {
+  position: relative;
+  border-top: 2px dashed var(--color-borde);
+  margin: 0 20px;
+}
+
+.ticket__perforacion::before,
+.ticket__perforacion::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-bg);
+  border-radius: 50%;
+}
+
+.ticket__perforacion::before {
+  left: -29px;
+}
+
+.ticket__perforacion::after {
+  right: -29px;
+}
+
+.ticket__importes {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.ticket__linea {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--color-texto-suave);
+}
+
+.ticket__linea dd {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+.ticket__linea--total {
+  border-top: 1px solid var(--color-borde);
+  padding-top: 8px;
+  margin-top: 4px;
+  font-size: 1.05rem;
+}
+
+.ticket__linea--total dt,
+.ticket__linea--total dd {
+  color: var(--color-primario-oscuro);
+  font-weight: 700;
+}
+
+.ticket__acciones {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.ticket__select {
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid var(--color-borde);
+  padding: 6px 10px;
+  background: var(--color-superficie);
+  flex: 1 1 120px;
+}
+
+/* --- Insignias de estado --- */
+.estado-badge {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.estado-badge--pendiente {
+  background: #fff3d6;
+  color: #92720c;
+}
+
+.estado-badge--confirmado {
+  background: #dcf7ee;
+  color: #0f7a5d;
+}
+
+.estado-badge--cancelado {
+  background: #ffe1e8;
+  color: #c23a63;
+}
+
+/* --- Botones --- */
+.btn {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border-radius: 10px;
+  padding: 7px 14px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(0.96);
+}
+
+.btn--primario {
+  background: var(--color-primario);
+  color: #fff;
+}
+
+.btn--secundario {
+  background: transparent;
+  border-color: var(--color-borde);
+  color: var(--color-texto);
+}
+
+.btn--editar {
+  background: transparent;
+  border-color: var(--color-menta);
+  color: var(--color-menta);
+}
+
+.btn--info {
+  background: transparent;
+  border-color: var(--color-amarillo);
+  color: #92720c;
+}
+
+.cliente-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.cliente-info__fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.92rem;
+  border-bottom: 1px solid var(--color-borde);
+  padding-bottom: 8px;
+}
+
+.cliente-info__fila dt {
+  color: var(--color-texto-suave);
+  font-weight: 700;
+}
+
+.cliente-info__fila dd {
+  margin: 0;
+  text-align: right;
+  color: var(--color-texto);
+}
+
+.cliente-info__fila--bloque {
+  flex-direction: column;
+  text-align: left;
+}
+
+.cliente-info__fila--bloque dd {
+  text-align: left;
+}
+
+.btn--peligro {
+  background: transparent;
+  border-color: var(--color-primario);
+  color: var(--color-primario);
+}
+
+/* --- Modales --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 48, 71, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: "Nunito", sans-serif;
+}
+
+.modal h2 {
+  font-family: "Baloo 2", sans-serif;
+  margin: 0 0 6px;
+  color: var(--color-primario-oscuro);
+}
+
+.modal label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+.modal input {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid var(--color-borde);
+  color: var(--color-texto);
+}
+
+.modal__total {
+  font-weight: 700;
+  color: var(--color-primario-oscuro);
+  margin: 4px 0 0;
+}
+
+.modal__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.modal--pequeno {
+  max-width: 320px;
+}
+
+@media (max-width: 480px) {
+  .admin-reservas {
+    padding: 24px 16px 48px;
+  }
+
+  .ticket__perforacion::before,
+  .ticket__perforacion::after {
+    display: none;
+  }
+}
