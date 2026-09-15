@@ -29,6 +29,7 @@ export async function logout() {
 			headers: {
 				"Content-Type": "application/json",
 			},
+            credentials: 'include',
 		});
 		if (!response.ok) {
 			throw new Error("Error al cerrar sesión");
