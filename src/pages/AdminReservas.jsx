@@ -11,6 +11,7 @@ import {
   deleteReserva,
 } from "../services/api";
 import "../assets/css/AdminReservas.css";
+import{logout} from "../services/authapi";
 
 const FILTROS = [
   { valor: "todas", etiqueta: "Todas" },
@@ -103,6 +104,15 @@ export default function AdminReservas() {
 
   return (
     <div className="admin-reservas">
+      <button
+        className="btn-cerrar"
+        onClick={async () => {
+          await logout();
+          navigate("/");
+        }}
+      >
+        Cerrar sesión
+      </button>
       <header className="admin-reservas__header">
         <h1>Reservas de la sala</h1>
         <p>Gestiona las fechas, el estado y los importes de cada evento.</p>
