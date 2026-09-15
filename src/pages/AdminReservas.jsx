@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ReservaCard from "../components/ReservaCard";
 import EditReservaModal from "../utils/EditReservaModal";
 import ConfirmDialog from "../utils/ConfirmDialog";
 import InfoClienteModal from "../utils/InfoClienteModal";
-import { getReservas, updateEstadoReserva, updateReserva, deleteReserva } from "../services/api";
+import {
+  getReservas,
+  updateEstadoReserva,
+  updateReserva,
+  deleteReserva,
+} from "../services/api";
 import "../assets/css/AdminReservas.css";
-
 
 const FILTROS = [
   { valor: "todas", etiqueta: "Todas" },
   { valor: "pendiente", etiqueta: "Pendientes" },
-  { valor: "confirmado", etiqueta: "Confirmadas" },
-  { valor: "cancelado", etiqueta: "Canceladas" },
+  { valor: "confirmada", etiqueta: "Confirmadas" },
+  { valor: "cancelada", etiqueta: "Canceladas" },
 ];
 
 export default function AdminReservas() {
@@ -23,6 +28,7 @@ export default function AdminReservas() {
   const [idAEliminar, setIdAEliminar] = useState(null);
   const [reservaInfo, setReservaInfo] = useState(null);
   const [aviso, setAviso] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!aviso) return;
@@ -50,15 +56,15 @@ export default function AdminReservas() {
   async function manejarCambioEstado(id, nuevoEstado) {
     const anterior = reservas;
     setReservas((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, estado: nuevoEstado } : r))
+      prev.map((r) => (r.id === id ? { ...r, estado: nuevoEstado } : r)),
     );
     try {
       await updateEstadoReserva(id, nuevoEstado);
-      if (nuevoEstado === "confirmado" || nuevoEstado === "cancelado") {
+      if (nuevoEstado === "confirmada" || nuevoEstado === "cancelada") {
         setAviso(
-          nuevoEstado === "confirmado"
+          nuevoEstado === "confirmada"
             ? "Reserva confirmada. Se ha avisado al cliente por email."
-            : "Reserva cancelada. Se ha avisado al cliente por email."
+            : "Reserva cancelada. Se ha avisado al cliente por email.",
         );
       }
     } catch (err) {
@@ -71,7 +77,9 @@ export default function AdminReservas() {
     try {
       await updateReserva(datosActualizados.id, datosActualizados);
       setReservas((prev) =>
-        prev.map((r) => (r.id === datosActualizados.id ? datosActualizados : r))
+        prev.map((r) =>
+          r.id === datosActualizados.id ? datosActualizados : r,
+        ),
       );
       setReservaEnEdicion(null);
     } catch (err) {
@@ -98,6 +106,12 @@ export default function AdminReservas() {
       <header className="admin-reservas__header">
         <h1>Reservas de la sala</h1>
         <p>Gestiona las fechas, el estado y los importes de cada evento.</p>
+        <button
+          className="btn btn--primario"
+          onClick={() => navigate("/finanzas")}
+        >
+          Finanzas
+        </button>
       </header>
 
       <nav className="admin-reservas__filtros">
@@ -114,7 +128,9 @@ export default function AdminReservas() {
 
       {aviso && <div className="admin-reservas__aviso">{aviso}</div>}
 
-      {cargando && <p className="admin-reservas__mensaje">Cargando reservas…</p>}
+      {cargando && (
+        <p className="admin-reservas__mensaje">Cargando reservas…</p>
+      )}
 
       {error && (
         <div className="admin-reservas__error">
