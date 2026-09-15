@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReservaCard from "../components/ReservaCard";
 import EditReservaModal from "../utils/EditReservaModal";
-import ConfirmDialog from "../utils/ConfirmDialog";
+import ConfirmDialog from "../components/ConfirmDialog";
 import InfoClienteModal from "../utils/InfoClienteModal";
 import {
   getReservas,
