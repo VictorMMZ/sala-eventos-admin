@@ -60,6 +60,20 @@ export default function EditReservaModal({ reserva, onGuardar, onCerrar }) {
           />
         </label>
 
+        <label>
+          Forma de pago
+          <select
+            className="ticket__select"
+            value={form.metodo_pago}
+            onChange={(e) => actualizarCampo("metodo_pago", e.target.value)}
+            aria-label={`Cambiar forma de pago de la reserva ${form.id}`}
+          >
+            <option value="efectivo">Efectivo</option>
+            <option value="tarjeta">Tarjeta</option>
+            <option value="transferencia">Transferencia</option>
+          </select>
+        </label>
+
         <p className="modal__total">Total: {total.toFixed(2)} €</p>
         <label>
           Total (€)
