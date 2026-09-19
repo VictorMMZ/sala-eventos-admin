@@ -52,6 +52,36 @@ export default function Login() {
         }
     };
 
+   const handleDemoAccount = async () => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/demo/claim`, {
+            method: 'POST',
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'No hay ninguna demo disponible');
+        }
+
+        // Iniciar sesión automáticamente con la cuenta demo
+        // misma contraseña para todas las cuentas demo
+        
+        console.log('Cuenta demo asignada:', data);
+        setEmail(data.email);
+        setPassword("Admin1234!");
+        
+
+       
+
+    } catch (error) {
+        console.error('Error al obtener demo:', error);
+    }
+};
+
+
+
     const handleVerify = async (e) => {
         e.preventDefault();
 
@@ -59,6 +89,9 @@ export default function Login() {
         setModalLoading(true);
 
         try {
+            const res = needsSetup
+                ? await verifyTwoFactorSetup({ totp_code: totpCode })
+                : await verifyTwoFactor({ totp_code: totpCode });
             if (needsSetup) {
                 await verifyTwoFactorSetup({
                     totp_code: totpCode,
@@ -71,6 +104,7 @@ export default function Login() {
 
             setShowModal(false);
             navigate("/dashboard");
+            sessionStorage.setItem("user", JSON.stringify(res.user));
         } catch (err) {
             setModalError(err.message || "Código 2FA inválido");
         } finally {
@@ -110,6 +144,12 @@ export default function Login() {
                             className="form-input"
                             required
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="form-label">
+                            <button onClick={handleDemoAccount}>Cuenta Demo</button>
+                            </label>
                     </div>
 
                     {error && (
