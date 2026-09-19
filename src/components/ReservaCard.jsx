@@ -16,7 +16,7 @@ const formatoDia = (dia) => {
 };
 
 export default function ReservaCard({ reserva, onCambiarEstado, onEditar, onEliminar, onVerInfo }) {
-  const { id,  precio, descuento, fianza, total, estado, reserva: { nombre_completo,fecha_evento, hora_entrada }
+  const { id,  precio, descuento, fianza, total,metodo_pago,estado, reserva: { nombre_completo,fecha_evento, hora_entrada }
 } = reserva;
 
   return (
@@ -51,6 +51,10 @@ export default function ReservaCard({ reserva, onCambiarEstado, onEditar, onElim
           <dt>Total</dt>
           <dd>{formatoMoneda(total)}</dd>
         </dl>
+        <dl className="ticket__linea">
+          <dt>Forma de pago</dt>
+          <dd>{metodo_pago}</dd>
+        </dl>
 
         <div className="ticket__acciones">
           <select
@@ -62,6 +66,7 @@ export default function ReservaCard({ reserva, onCambiarEstado, onEditar, onElim
             <option value="pendiente">Pendiente</option>
             <option value="confirmada">Confirmado</option>
             <option value="cancelada">Cancelado</option>
+            
           </select>
           <button className="btn btn--info" onClick={() => onVerInfo(reserva)}>
             Ver información
