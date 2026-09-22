@@ -18,7 +18,7 @@ El panel consume la API desarrollada con Laravel y proporciona una interfaz priv
 
 ## Credenciales Demo 
 
-En el login del panel de administrador haciendo click en el boton "Cuenta demo" el programa asigna automaticamente un usuario demo de la base de datos y despues de eso se hace necesario la configuración del 2FA  mediante codigo QR
+- En el login del panel de administrador haciendo click en el boton "Cuenta demo" el programa asigna automaticamente un usuario demo de la base de datos y despues de eso se hace necesario la configuración del 2FA  mediante codigo QR
 
 
 ## 🔐 Autenticación
